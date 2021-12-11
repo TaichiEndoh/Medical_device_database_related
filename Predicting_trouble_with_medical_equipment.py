@@ -89,20 +89,17 @@ s_date=day_sum
 df_date=s_date.reset_index()
 df_date['day'] = pd.to_datetime(df_date['day'])
 df_date['曜日']=df_date['day'].apply(lambda x:x.weekday())
-#Sort by date
 sorted_df = df_date.sort_values(['day'])
 sorted_df2p=sorted_df.reset_index()
 sorted_df2=sorted_df2p.drop('index', axis=1)
 df_date=sorted_df2
 df_date['day'] = pd.to_datetime(df_date['day'])
 df_date['day'] = df_date['day'].astype(str)
-sorted_df3_1=df_date
-df1 = sorted_df3_1
-sorted_df3r=df1['day'].str.replace('-', '/')
-df1_non_day=df1.drop('day', axis=1)
+sorted_df=df_date
+sorted_df3r=sorted_df['day'].str.replace('-', '/')
+df1_non_day=sorted_df.drop('day', axis=1)
 df1_non_day['day']=sorted_df3r
 sorted_df3_d=df1_non_day
-sorted_df3_d
 
 def Sort_by_date(sorted_df2):
     df_date=sorted_df2
@@ -143,8 +140,7 @@ s= pd.Series(day_all)
 ss=s.astype(str)
 s_new = ss.str.replace('-', '/')
 df_rk=day_sum
-df_b = df_r
-df_b_1 = df_b
+df_b_1 = df_r
 df_b_1_p = df_b_1["管理番号"].values
 dpc_d_p = df_b_1_p.tolist()
 dpc_d = list(dict.fromkeys(dpc_d_p))
@@ -155,6 +151,7 @@ np.nan_to_num(dpc)
 for i in dpc:
  Department_name = i
  print(i)
+df_b=df_r
 df_0=df_b.fillna(0)
 
 def ward_name(data,colum1,colum2,count_t1,count_t2):
@@ -162,9 +159,9 @@ def ward_name(data,colum1,colum2,count_t1,count_t2):
         df_d['count_p'] = 1
         df_1=df_d.reset_index()
         df_2 = df_1.set_index([colum1,colum2])
-        #ここでDepartment_nameが設定されている↓
+        #where Department_name is set ↓
         hd_1_set = df_2.xs(Department_name, level=0)
-        #ここでDepartment_nameが設定されている↑
+        #where Department_name is set ↑
         send_dt_dp = hd_1_set.groupby(count_t1).count()
         send_dt_d2 = hd_1_set.groupby([count_t1,count_t2]).count()
 ward_name(df_0,"管理番号","作業日","count_p","発行　受付者")
