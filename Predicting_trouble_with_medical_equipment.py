@@ -27,7 +27,7 @@ class my_directory_p:
             os.mkdir(data_dir)
         print(u.pass_o()+"I created a folder!")
     def imp_data(self):
-        image_file_path = './data/simulated_data/Medical_Device_simulated_data.csv'
+        image_file_path = './data/Medical_Device_simulated_data.csv'
         import pandas as pd
         with codecs.open(image_file_path, "r", "Shift-JIS", "ignore") as file:
                 df_md = pd.read_table(file, delimiter=",")
@@ -46,8 +46,8 @@ pd1['count_p'] = 1
 day_sum=pd1.sum(level=0)
 
 #Call the database log data and simulation data
-image_file_path = './data/simulated_data/logbackup_simulated_data.csv'
-image_file_path2 = './data/simulated_data/periodic_inspection_simulated_data.csv'
+image_file_path = './data/logbackup_simulated_data.csv'
+image_file_path2 = './data/periodic_inspection_simulated_data.csv'
 
 import pandas as pd
 with codecs.open(image_file_path, "r", "Shift-JIS", "ignore") as file:
@@ -67,11 +67,8 @@ print(dpc_date)
 df_m_4_9=logbackup_d
 df_m_4_9d=df_m_4_9.drop('day', axis=1)
 df_m_4_9d["day"]=dpc_date
-print(df_m_4_9d)
-#dayの('-', '/')を入れ替えたいので以下の方法を利用した
 df=df_m_4_9d
 df['day'] = df['day'].astype(str)
-#day の　ー　を　/　に直すソースコード
 def day_str_replace(df1):
     sorted_df3r=df1['day'].str.replace('-', '/')
     sorted_df3r
