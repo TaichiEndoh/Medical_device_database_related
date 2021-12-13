@@ -8,7 +8,6 @@ sns.set()
 #↑If you use jupyter, remove # and use it
 import codecs
 import os
-import codecs
 from datetime import datetime
 from datetime import timedelta
 from sklearn.model_selection import train_test_split
